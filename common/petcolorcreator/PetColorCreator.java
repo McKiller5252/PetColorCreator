@@ -1,43 +1,22 @@
 package petcolorcreator;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.FlowLayout;
-import java.awt.Font;
-import java.awt.FontFormatException;
-import java.awt.Graphics;
-import java.awt.GraphicsEnvironment;
-import java.awt.HeadlessException;
-import java.awt.Insets;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
-import java.awt.event.WindowEvent;
-import java.awt.event.WindowListener;
+import java.awt.*;
+import java.awt.event.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import javax.imageio.ImageIO;
-import javax.swing.Box;
-import javax.swing.JButton;
-import javax.swing.JEditorPane;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JMenu;
-import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
-import javax.swing.JOptionPane;
-import javax.swing.JTextPane;
+import javax.swing.*;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.border.EmptyBorder;
 import javax.swing.text.html.HTMLDocument;
 
-
-public class PetColorCreator extends JFrame implements WindowListener, ActionListener {
-	final static String VERSION = "1.0";
-	
+public class PetColorCreator extends JFrame {
+        final static String VERSION = "1.0";
+        
     private JEditorPane formatter;
     private ImageTextPane formatted;
     private Font mcFont;
@@ -50,16 +29,14 @@ public class PetColorCreator extends JFrame implements WindowListener, ActionLis
 
     
     public static void main(String[] args) {
-        PetColorCreator minecraftTextFormatter = new PetColorCreator("Pet Name Color Creator" + VERSION);
-        
+        PetColorCreator form = new PetColorCreator("Pet Name Color Creator" + VERSION);
+        form.setVisible(true);
     }
  
     public PetColorCreator(String title) throws HeadlessException {
-        super(title);
-        this.setLayout(new FlowLayout());
-        this.addWindowListener(this);
-        
-        
+        setLayout(new FlowLayout());
+        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        setTitle(title);
         
         menubar = new JMenuBar();
         add(menubar);
@@ -67,7 +44,7 @@ public class PetColorCreator extends JFrame implements WindowListener, ActionLis
         about = new JMenu("About");
         menubar.add(about);
         
-        forum = new JMenu("HypixelForum Thread");
+        forum = new JMenu("Hypixel Forum Thread");
         menubar.add(forum);
         
         issues = new JMenu("Bugs/Issues");
@@ -81,18 +58,29 @@ public class PetColorCreator extends JFrame implements WindowListener, ActionLis
 
         setJMenuBar(menubar);
         
-        about.addActionListener(new java.awt.event.ActionListener(){
-        	public void actionPerformed(java.awt.event.ActionEvent evt) {
-          
-                }
-        });
+        about.addMouseListener(new MouseAdapter() {
+                        @Override
+                        public void mouseClicked(MouseEvent arg0) {
+                                About form = new About();
+                        form.setVisible(true);
+                        }
+                });
+        
+        exit.addMouseListener(new MouseAdapter() {
+                        @Override
+                        public void mouseClicked(MouseEvent arg0) {
+                                System.exit(0);
+                        }
+                });
+        
 
-        forum.addActionListener(this);
-        issues.addActionListener(this);
-        help.addActionListener(this);
-        exit.addActionListener(this);
-        
-        
+        help.addMouseListener(new MouseAdapter() {
+                        @Override
+                        public void mouseClicked(MouseEvent arg0) {
+                                Help form = new Help();
+                        form.setVisible(true);
+                        }
+                });
  
         formatter = new JEditorPane();
         try {
@@ -126,34 +114,34 @@ public class PetColorCreator extends JFrame implements WindowListener, ActionLis
  
         formatted.setPreferredSize(new Dimension(600, 60));
  
-        this.add(formatColorButton("§4", new Color(0xbe0000), true));
-        this.add(formatColorButton("§c", new Color(0xfe3f3f)));
-        this.add(formatColorButton("§6", new Color(0xD9A334)));
-        this.add(formatColorButton("§e", new Color(0xfefe3f)));
-        this.add(formatColorButton("§2", new Color(0x00be00)));
-        this.add(formatColorButton("§a", new Color(0x3ffe3f)));
-        this.add(formatColorButton("§b", new Color(0x3ffefe)));
-        this.add(formatColorButton("§3", new Color(0x00bebe)));
-        this.add(formatColorButton("§1", new Color(0x0000be), true));
-        this.add(formatColorButton("§9", new Color(0x3f3ffe)));
-        this.add(formatColorButton("§d", new Color(0xfe3ffe)));
-        this.add(formatColorButton("§5", new Color(0xbe00be)));
-        this.add(formatColorButton("§f", new Color(0xffffff)));
-        this.add(formatColorButton("§7", new Color(0xbebebe)));
-        this.add(formatColorButton("§8", new Color(0x3f3f3f), true));
-        this.add(formatColorButton("§0", new Color(0x000000), true));
-        this.add(Box.createRigidArea(new Dimension(20, 15)));
-        this.add(formatButton("§n"));
-        this.add(formatButton("§l"));
-        this.add(formatButton("§m"));
-        this.add(formatButton("§o"));
-        this.add(formatter);
-        this.add(formatted);
+        add(formatColorButton("&4", new Color(0xbe0000), true));
+        add(formatColorButton("&c", new Color(0xfe3f3f)));
+        add(formatColorButton("&6", new Color(0xD9A334)));
+        add(formatColorButton("&e", new Color(0xfefe3f)));
+        add(formatColorButton("&2", new Color(0x00be00)));
+        add(formatColorButton("&a", new Color(0x3ffe3f)));
+        add(formatColorButton("&b", new Color(0x3ffefe)));
+        add(formatColorButton("&3", new Color(0x00bebe)));
+        add(formatColorButton("&1", new Color(0x0000be), true));
+        add(formatColorButton("&9", new Color(0x3f3ffe)));
+        add(formatColorButton("&d", new Color(0xfe3ffe)));
+        add(formatColorButton("&5", new Color(0xbe00be)));
+        add(formatColorButton("&f", new Color(0xffffff)));
+        add(formatColorButton("&7", new Color(0xbebebe)));
+        add(formatColorButton("&8", new Color(0x3f3f3f), true));
+        add(formatColorButton("&0", new Color(0x000000), true));
+        add(Box.createRigidArea(new Dimension(20, 15)));
+        add(formatButton("&n"));
+        add(formatButton("&l"));
+        add(formatButton("&m"));
+        add(formatButton("&o"));
+        add(formatter);
+        add(formatted);
         formatted.setEditable(false);
-        this.setSize(625, 250);
-        this.setBackground(Color.white);
-        this.setResizable(false);
-        this.setVisible(true);
+        setSize(625, 250);
+        setBackground(Color.white);
+        setResizable(false);
+        setVisible(true);
         formatter.grabFocus();
     }
  
@@ -206,8 +194,8 @@ public class PetColorCreator extends JFrame implements WindowListener, ActionLis
         try {
             StringBuilder sb = new StringBuilder();
             sb.append("<font face='Minecraft'>");
-            if (text.contains("§")) {
-                String[] split = text.split("§");
+            if (text.contains("&")) {
+                String[] split = text.split("&");
                 String splitStr;
                 for (int i = 0; i < split.length; i++) {
                     splitStr = split[i];
@@ -278,36 +266,6 @@ public class PetColorCreator extends JFrame implements WindowListener, ActionLis
         return "";
     }
  
-    @Override
-    public void windowOpened(WindowEvent e) {
-    }
- 
-    @Override
-    public void windowClosing(WindowEvent e) {
-    }
- 
-    @Override
-    public void windowClosed(WindowEvent e) {
-        System.exit(0);
-    }
- 
-    @Override
-    public void windowIconified(WindowEvent e) {
-    }
- 
-    @Override
-    public void windowDeiconified(WindowEvent e) {
-    }
- 
-    @Override
-    public void windowActivated(WindowEvent e) {
-    }
- 
-    @Override
-    public void windowDeactivated(WindowEvent e) {
-    }
-   
- 
     private static class ImageTextPane extends JTextPane {
  
         BufferedImage img;
@@ -326,10 +284,91 @@ public class PetColorCreator extends JFrame implements WindowListener, ActionLis
         }
     }
 
-	@Override
-	public void actionPerformed(ActionEvent click){
-		
-	
-	}
+    private class About extends JFrame {
+            public About() {
+                    //Insert About form generation code here.
+                    JLabel title = new JLabel();
+                    JLabel auth = new JLabel();
+                    JLabel ver = new JLabel();
+                    
+                    setTitle("About");
+                    title.setText("Title: Pet Color Creator");
+                    auth.setText("Author: Killer5252 and pigdevil2010");
+                    ver.setText("Version: " + VERSION);
+                    
+                    JPanel contentPane = new JPanel();
+                    contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+                    setContentPane(contentPane);
+                    GroupLayout gl_contentPane = new GroupLayout(contentPane);
+                    gl_contentPane.setHorizontalGroup(
+                            gl_contentPane.createParallelGroup(Alignment.LEADING)
+                                    .addGroup(gl_contentPane.createSequentialGroup()
+                                            .addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+                                                    .addComponent(title)
+                                                    .addComponent(auth)
+                                                    .addComponent(ver))
+                                            .addContainerGap(378, Short.MAX_VALUE))
+                    );
+                    gl_contentPane.setVerticalGroup(
+                            gl_contentPane.createParallelGroup(Alignment.LEADING)
+                                    .addGroup(gl_contentPane.createSequentialGroup()
+                                        .addComponent(title)
+                                            .addPreferredGap(ComponentPlacement.RELATED)
+                                            .addComponent(auth)
+                                            .addPreferredGap(ComponentPlacement.RELATED)
+                                            .addComponent(ver)
+                                            .addContainerGap(197, Short.MAX_VALUE))
+                    );
+                    contentPane.setLayout(gl_contentPane);
+                    setSize(300,150);
+                    setResizable(false);
+            }
+    }
+    
+    private class Help extends JFrame {
+            public Help() {
+                    //Insert About form generation code here.
+                    JLabel inst = new JLabel();
+                    JLabel info1 = new JLabel();
+                    JLabel info2 = new JLabel();
+                    JLabel info3 = new JLabel();
+                    
+                    setTitle("Help");
+                    inst.setText("Instructions:");
+                    info1.setText("Type anything you want in the textbox and it you want to color a word");
+                    info2.setText("just press one of the color buttons above and place the color tag before the word");
+                    info3.setText("Example: &eSexyKitty will give you a yellow word");
+                    
+                    JPanel contentPane = new JPanel();
+                    contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+                    setContentPane(contentPane);
+                    GroupLayout gl_contentPane = new GroupLayout(contentPane);
+                    gl_contentPane.setHorizontalGroup(
+                            gl_contentPane.createParallelGroup(Alignment.LEADING)
+                                    .addGroup(gl_contentPane.createSequentialGroup()
+                                            .addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+                                                    .addComponent(inst)
+                                                    .addComponent(info1)
+                                                    .addComponent(info2)
+                                                    .addComponent(info3))
+                                            .addContainerGap(197, Short.MAX_VALUE))
+                    		);
+                    gl_contentPane.setVerticalGroup(
+                            gl_contentPane.createParallelGroup(Alignment.LEADING)
+                                    .addGroup(gl_contentPane.createSequentialGroup()
+                                        .addComponent(inst)
+                                            .addPreferredGap(ComponentPlacement.RELATED)
+                                            .addComponent(info1)
+                                            .addPreferredGap(ComponentPlacement.RELATED)
+                                            .addComponent(info2)
+                                            .addPreferredGap(ComponentPlacement.RELATED)
+                                            .addComponent(info3)
+                                            .addContainerGap(197, Short.MAX_VALUE))
+                    );
+                    contentPane.setLayout(gl_contentPane);
+                    setSize(600,200);
+                    setResizable(false);
+            }
+    }
   }
 
