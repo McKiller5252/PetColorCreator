@@ -13,7 +13,7 @@ because there is no HTML tag for it :(
 
 
 
-<img src="http://i.imgur.com/7xPDrhJ.png" alt="Picture">
+<img src="http://i.imgur.com/8j6z66y.png" alt="Picture">
 
 
 
