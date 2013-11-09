@@ -5,10 +5,7 @@ PetColorCreator
 
 Pet Name Color Generator is a java application that i have coded with will allow you to easely create your pets name in the colors that you want
 Plus i have added the fancy tags
-&l -Bold
-&m -Strikethrough
-&n -Underline
-&o -Italic
+
 
 The only thing i cant add to this is the random letter number symbol thingy
 because there is no HTML tag for it :(
