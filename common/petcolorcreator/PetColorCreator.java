@@ -4,6 +4,8 @@ import java.awt.*;
 import java.awt.event.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -58,29 +60,61 @@ public class PetColorCreator extends JFrame {
 
         setJMenuBar(menubar);
         
-        about.addMouseListener(new MouseAdapter() {
-                        @Override
-                        public void mouseClicked(MouseEvent arg0) {
-                                About form = new About();
-                        form.setVisible(true);
+        //Check if desktop is supported
+        forum.setEnabled(false);
+        issues.setEnabled(false);
+        if (Desktop.isDesktopSupported()) {
+            final Desktop desktop = Desktop.getDesktop();
+            if (desktop.isSupported(Desktop.Action.BROWSE)) {
+                forum.setEnabled(true);
+                issues.setEnabled(true);
+                forum.addMouseListener(new MouseAdapter() {
+                    @Override
+                    public void mouseClicked(MouseEvent arg0) {
+                    	try {
+                            URI uri = new URI("http://hypixel.net/threads/pet-name-color-generator.29022");
+                            desktop.browse(uri);
                         }
+                        catch(IOException ioe) {}
+                        catch(URISyntaxException use) {}
+                    }
                 });
+                issues.addMouseListener(new MouseAdapter() {
+                    @Override
+                    public void mouseClicked(MouseEvent arg0) {
+                    	try {
+                            URI uri = new URI("https://github.com/McKiller5252/PetColorCreator/issues");
+                            desktop.browse(uri);
+                        }
+                        catch(IOException ioe) {}
+                        catch(URISyntaxException use) {}
+                    }
+                });
+            }
+        }
+        
+        about.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent arg0) {
+                About form = new About();
+                form.setVisible(true);
+            }
+        });
         
         exit.addMouseListener(new MouseAdapter() {
-                        @Override
-                        public void mouseClicked(MouseEvent arg0) {
-                                System.exit(0);
-                        }
-                });
-        
+            @Override
+            public void mouseClicked(MouseEvent arg0) {
+                System.exit(0);
+            }
+        });
 
         help.addMouseListener(new MouseAdapter() {
-                        @Override
-                        public void mouseClicked(MouseEvent arg0) {
-                                Help form = new Help();
-                        form.setVisible(true);
-                        }
-                });
+            @Override
+            public void mouseClicked(MouseEvent arg0) {
+                Help form = new Help();
+            form.setVisible(true);
+            }
+        });
  
         formatter = new JEditorPane();
         try {
@@ -285,90 +319,89 @@ public class PetColorCreator extends JFrame {
     }
 
     private class About extends JFrame {
-            public About() {
-                    //Insert About form generation code here.
-                    JLabel title = new JLabel();
-                    JLabel auth = new JLabel();
-                    JLabel ver = new JLabel();
-                    
-                    setTitle("About");
-                    title.setText("Title: Pet Color Creator");
-                    auth.setText("Author: Killer5252 and pigdevil2010");
-                    ver.setText("Version: " + VERSION);
-                    
-                    JPanel contentPane = new JPanel();
-                    contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-                    setContentPane(contentPane);
-                    GroupLayout gl_contentPane = new GroupLayout(contentPane);
-                    gl_contentPane.setHorizontalGroup(
-                            gl_contentPane.createParallelGroup(Alignment.LEADING)
-                                    .addGroup(gl_contentPane.createSequentialGroup()
-                                            .addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-                                                    .addComponent(title)
-                                                    .addComponent(auth)
-                                                    .addComponent(ver))
-                                            .addContainerGap(378, Short.MAX_VALUE))
-                    );
-                    gl_contentPane.setVerticalGroup(
-                            gl_contentPane.createParallelGroup(Alignment.LEADING)
-                                    .addGroup(gl_contentPane.createSequentialGroup()
-                                        .addComponent(title)
-                                            .addPreferredGap(ComponentPlacement.RELATED)
-                                            .addComponent(auth)
-                                            .addPreferredGap(ComponentPlacement.RELATED)
-                                            .addComponent(ver)
-                                            .addContainerGap(197, Short.MAX_VALUE))
-                    );
-                    contentPane.setLayout(gl_contentPane);
-                    setSize(300,150);
-                    setResizable(false);
-            }
+        public About() {
+            //Insert About form generation code here.
+            JLabel title = new JLabel();
+            JLabel auth = new JLabel();
+            JLabel ver = new JLabel();
+            
+            setTitle("About");
+            title.setText("Title: Pet Color Creator");
+            auth.setText("Author: Killer5252 and pigdevil2010");
+            ver.setText("Version: " + VERSION);
+            
+            JPanel contentPane = new JPanel();
+            contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+            setContentPane(contentPane);
+            GroupLayout gl_contentPane = new GroupLayout(contentPane);
+            gl_contentPane.setHorizontalGroup(
+                gl_contentPane.createParallelGroup(Alignment.LEADING)
+                    .addGroup(gl_contentPane.createSequentialGroup()
+                        .addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+                            .addComponent(title)
+                            .addComponent(auth)
+                            .addComponent(ver))
+                        .addContainerGap(378, Short.MAX_VALUE))
+            );
+            gl_contentPane.setVerticalGroup(
+                gl_contentPane.createParallelGroup(Alignment.LEADING)
+                    .addGroup(gl_contentPane.createSequentialGroup()
+                    .addComponent(title)
+                        .addPreferredGap(ComponentPlacement.RELATED)
+                        .addComponent(auth)
+                        .addPreferredGap(ComponentPlacement.RELATED)
+                        .addComponent(ver)
+                        .addContainerGap(197, Short.MAX_VALUE))
+            );
+            contentPane.setLayout(gl_contentPane);
+            setSize(300,150);
+            setResizable(false);
+        }
     }
     
     private class Help extends JFrame {
-            public Help() {
-                    //Insert About form generation code here.
-                    JLabel inst = new JLabel();
-                    JLabel info1 = new JLabel();
-                    JLabel info2 = new JLabel();
-                    JLabel info3 = new JLabel();
-                    
-                    setTitle("Help");
-                    inst.setText("Instructions:");
-                    info1.setText("Type anything you want in the textbox and it you want to color a word");
-                    info2.setText("just press one of the color buttons above and place the color tag before the word");
-                    info3.setText("Example: &eSexyKitty will give you a yellow word");
-                    
-                    JPanel contentPane = new JPanel();
-                    contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-                    setContentPane(contentPane);
-                    GroupLayout gl_contentPane = new GroupLayout(contentPane);
-                    gl_contentPane.setHorizontalGroup(
-                            gl_contentPane.createParallelGroup(Alignment.LEADING)
-                                    .addGroup(gl_contentPane.createSequentialGroup()
-                                            .addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-                                                    .addComponent(inst)
-                                                    .addComponent(info1)
-                                                    .addComponent(info2)
-                                                    .addComponent(info3))
-                                            .addContainerGap(197, Short.MAX_VALUE))
-                    		);
-                    gl_contentPane.setVerticalGroup(
-                            gl_contentPane.createParallelGroup(Alignment.LEADING)
-                                    .addGroup(gl_contentPane.createSequentialGroup()
-                                        .addComponent(inst)
-                                            .addPreferredGap(ComponentPlacement.RELATED)
-                                            .addComponent(info1)
-                                            .addPreferredGap(ComponentPlacement.RELATED)
-                                            .addComponent(info2)
-                                            .addPreferredGap(ComponentPlacement.RELATED)
-                                            .addComponent(info3)
-                                            .addContainerGap(197, Short.MAX_VALUE))
-                    );
-                    contentPane.setLayout(gl_contentPane);
-                    setSize(600,200);
-                    setResizable(false);
-            }
+        public Help() {
+            //Insert About form generation code here.
+            JLabel inst = new JLabel();
+            JLabel info1 = new JLabel();
+            JLabel info2 = new JLabel();
+            JLabel info3 = new JLabel();
+            
+            setTitle("Help");
+            inst.setText("Instructions:");
+            info1.setText("Type anything you want in the textbox and it you want to color a word");
+            info2.setText("just press one of the color buttons above and place the color tag before the word");
+            info3.setText("Example: &eSexyKitty will give you a yellow word");
+            
+            JPanel contentPane = new JPanel();
+            contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+            setContentPane(contentPane);
+            GroupLayout gl_contentPane = new GroupLayout(contentPane);
+            gl_contentPane.setHorizontalGroup(
+                gl_contentPane.createParallelGroup(Alignment.LEADING)
+                    .addGroup(gl_contentPane.createSequentialGroup()
+                        .addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+                            .addComponent(inst)
+                            .addComponent(info1)
+                            .addComponent(info2)
+                            .addComponent(info3))
+                        .addContainerGap(197, Short.MAX_VALUE))
+            		);
+            gl_contentPane.setVerticalGroup(
+                gl_contentPane.createParallelGroup(Alignment.LEADING)
+                    .addGroup(gl_contentPane.createSequentialGroup()
+                    .addComponent(inst)
+                        .addPreferredGap(ComponentPlacement.RELATED)
+                        .addComponent(info1)
+                        .addPreferredGap(ComponentPlacement.RELATED)
+                        .addComponent(info2)
+                        .addPreferredGap(ComponentPlacement.RELATED)
+                        .addComponent(info3)
+                        .addContainerGap(197, Short.MAX_VALUE))
+            );
+            contentPane.setLayout(gl_contentPane);
+            setSize(600,200);
+            setResizable(false);
+        }
     }
   }
-
