@@ -482,4 +482,4 @@ public class PetColorCreator extends JFrame {
             setResizable(false); 
         } 
     } 
-  } 
+  }  
