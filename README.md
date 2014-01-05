@@ -10,7 +10,7 @@ Plus i have added the fancy tags
 The only thing i cant add to this is the random letter number symbol thingy
 because there is no HTML tag for it :(
 
-
+Download is on this page - http://hypixel.net/threads/pet-name-color-generator.29022/
 
 
 <img src="http://i.imgur.com/8j6z66y.png" alt="Picture">
