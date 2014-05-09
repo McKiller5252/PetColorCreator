@@ -19,7 +19,7 @@ import javax.swing.text.html.HTMLDocument;
   
 public class PetColorCreator extends JFrame { 
           
-    final static String VERSION = "1.1"; 
+    final static String VERSION = "1.2"; 
           
     private JEditorPane formatter; 
     private ImageTextPane formatted; 
@@ -447,7 +447,7 @@ public class PetColorCreator extends JFrame {
               
             setTitle("Help"); 
             inst.setText("Instructions:"); 
-            info1.setText("Type anything you want in the textbox and it you want to color a word"); 
+            info1.setText("Type anything you want in the textbox and if you want to color a word"); 
             info2.setText("just press one of the color buttons above and place the color tag before the word"); 
             info3.setText("Example: &eSexyKitty will give you a yellow word"); 
               
