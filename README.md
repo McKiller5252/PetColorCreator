@@ -7,10 +7,10 @@ Pet Name Color Generator is a java application that i have coded with will allow
 Plus i have added the fancy tags
 
 
-Download is on this page - http://hypixel.net/threads/pet-name-color-generator.29022/
+Download is on this page - http://hypixel.net/threads/tool-pet-name-color-generator.202857/
 
 
-<img src="http://i.imgur.com/8j6z66y.png" alt="Picture">
+<img src="http://i.imgur.com/9IHTkuQ.png" alt="STOP HOVER OVER MEHHH!!!!!!!!!">
 
 
 
