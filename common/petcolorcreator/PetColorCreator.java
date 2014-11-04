@@ -8,22 +8,22 @@ import java.net.URI;
 import java.net.URISyntaxException; 
 import java.util.logging.Level; 
 import java.util.logging.Logger; 
-import java.util.Random; 
   
 import javax.imageio.ImageIO; 
 import javax.swing.*; 
-import javax.swing.GroupLayout.Alignment; 
-import javax.swing.LayoutStyle.ComponentPlacement; 
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.border.EmptyBorder; 
 import javax.swing.text.html.HTMLDocument; 
   
 public class PetColorCreator extends JFrame { 
           
-    final static String VERSION = "1.2"; 
+    private static final long serialVersionUID = 1L;
+
+	final static String VERSION = "1.3"; 
           
     private JEditorPane formatter; 
     private ImageTextPane formatted; 
-    private Font mcFont; 
     private JMenuBar menubar; 
     private JMenu help; 
     private JMenu about; 
@@ -61,7 +61,14 @@ public class PetColorCreator extends JFrame {
         exit = new JMenu("Exit"); 
         menubar.add(exit); 
   
-        setJMenuBar(menubar); 
+        setJMenuBar(menubar);
+        
+        //Icon
+        try{
+	    	this.setIconImage(ImageIO.read(this.getClass().getResourceAsStream("icon.png")));
+	    }catch(IOException e){
+	    	e.getStackTrace();
+	    }
           
         //Check if desktop is supported 
         forum.setEnabled(false); 
@@ -131,7 +138,8 @@ public class PetColorCreator extends JFrame {
    
         try { 
             final Font f = Font.createFont(Font.TRUETYPE_FONT, this.getClass().getResourceAsStream("font.ttf")); 
-            mcFont = f; 
+            @SuppressWarnings("unused")
+			Font mcFont = f; 
             final String bodyRule = "body { font-family: " + f.getFamily() + "; "
                     + "font-size: " + 16 + "pt; "
                     + "color: #ffffff;"
@@ -190,6 +198,7 @@ public class PetColorCreator extends JFrame {
         setSize(625, 250); 
         setBackground(Color.white); 
         setResizable(false); 
+        setLocationRelativeTo(null);
         setVisible(true); 
         formatter.grabFocus(); 
     } 
@@ -273,7 +282,7 @@ public class PetColorCreator extends JFrame {
       
     private String randomword(String a) 
     { 
-        long n = 0; 
+        
         char[] inp = a.toCharArray(); 
         char[] outp = new char[a.length()]; 
         for(int i=0;i<a.length();i++) 
@@ -380,7 +389,8 @@ public class PetColorCreator extends JFrame {
    
     private static class ImageTextPane extends JTextPane { 
    
-        BufferedImage img; 
+        private static final long serialVersionUID = 1L;
+		BufferedImage img; 
    
         public ImageTextPane(BufferedImage img) { 
             super(); 
@@ -397,7 +407,10 @@ public class PetColorCreator extends JFrame {
     } 
   
     private class About extends JFrame { 
-        public About() { 
+    	
+        private static final long serialVersionUID = 1L;
+
+		public About() { 
             //Insert About form generation code here. 
             JLabel title = new JLabel(); 
             JLabel auth = new JLabel(); 
@@ -432,13 +445,17 @@ public class PetColorCreator extends JFrame {
                         .addContainerGap(197, Short.MAX_VALUE)) 
             ); 
             contentPane.setLayout(gl_contentPane); 
-            setSize(300,150); 
+            setSize(300,150);
+            setLocationRelativeTo(null);
             setResizable(false); 
         } 
     } 
       
     private class Help extends JFrame { 
-        public Help() { 
+    	
+        private static final long serialVersionUID = 1L;
+
+		public Help() { 
             //Insert About form generation code here. 
             JLabel inst = new JLabel(); 
             JLabel info1 = new JLabel(); 
@@ -478,7 +495,8 @@ public class PetColorCreator extends JFrame {
                         .addContainerGap(197, Short.MAX_VALUE)) 
             ); 
             contentPane.setLayout(gl_contentPane); 
-            setSize(600,200); 
+            setSize(600,200);
+            setLocationRelativeTo(null);
             setResizable(false); 
         } 
     } 
