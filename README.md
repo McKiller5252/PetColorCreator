@@ -7,9 +7,6 @@ Pet Name Color Generator is a java application that i have coded with will allow
 Plus i have added the fancy tags
 
 
-The only thing i cant add to this is the random letter number symbol thingy
-because there is no HTML tag for it :(
-
 Download is on this page - http://hypixel.net/threads/pet-name-color-generator.29022/
 
 
